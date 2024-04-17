@@ -3,6 +3,7 @@ package com.ezban.member;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+
 public class TestMemberDAO {
 
 	public static void main(String[] args) throws Exception {
@@ -12,11 +13,11 @@ public class TestMemberDAO {
 
 		// 新增
 		Member member1 = new Member();
-		member1.setMemberNo(2);
-		member1.setMemeberMail("member2@gmail.com");
-		member1.setMemberPwd("1234567890");
-		member1.setMemberName("jack");
-		member1.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("1990-08-07"));
+		member1.setMemberNo(0);
+		member1.setMemeberMail("eleventh@gmail.com");
+		member1.setMemberPwd("password11");
+		member1.setMemberName("胡石伊");
+		member1.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("2001-08-07"));
 		member1.setGender(1);
 		member1.setMemberPhone("0988222333");
 		member1.setAddress("qqaaaqaqaaqaa");

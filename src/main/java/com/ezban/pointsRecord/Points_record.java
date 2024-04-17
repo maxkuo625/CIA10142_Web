@@ -6,7 +6,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 
@@ -24,14 +25,15 @@ public class Points_record {
 	private Integer pointsChanged;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "transaction_time")
-	private Date transactionTime;
+	private LocalDateTime transactionTime;
 	
 	public Points_record() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Points_record(Integer pointsRecordNo, Integer memberNo, Integer pointsChanged, Date transactionTime) {
+	public Points_record(Integer pointsRecordNo, Integer memberNo, Integer pointsChanged,
+			LocalDateTime transactionTime) {
 		super();
 		this.pointsRecordNo = pointsRecordNo;
 		this.memberNo = memberNo;
@@ -63,13 +65,15 @@ public class Points_record {
 		this.pointsChanged = pointsChanged;
 	}
 
-	public Date getTransactionTime() {
+	public LocalDateTime getTransactionTime() {
 		return transactionTime;
 	}
 
-	public void setTransactionTime(Date transactionTime) {
+	public void setTransactionTime(LocalDateTime transactionTime) {
 		this.transactionTime = transactionTime;
 	}
+
+	
 	
 	
 }

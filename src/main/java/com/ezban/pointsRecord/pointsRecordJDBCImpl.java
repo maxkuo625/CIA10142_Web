@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
 import com.ezban.member.JDBCUtil;
 
@@ -40,7 +41,9 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			pstmt.setInt(1, poRecord.getPointsRecordNo());
 			pstmt.setInt(2, poRecord.getMemberNo());
 			pstmt.setInt(3, poRecord.getPointsChanged());
-			pstmt.setDate(4, new java.sql.Date(poRecord.getTransactionTime().getTime()));
+			LocalDateTime dateTime = poRecord.getTransactionTime();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(4, timestamp);
 
 			return pstmt.executeUpdate();
 
@@ -67,7 +70,9 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			pstmt.setInt(1, poRecord.getPointsRecordNo());
 			pstmt.setInt(2, poRecord.getMemberNo());
 			pstmt.setInt(3, poRecord.getPointsChanged());
-			pstmt.setDate(4, new java.sql.Date(poRecord.getTransactionTime().getTime()));
+			LocalDateTime dateTime = poRecord.getTransactionTime();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(4, timestamp);
 
 			return pstmt.executeUpdate();
 
@@ -119,11 +124,16 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+	            
 				poRecord = new Points_record();
 				poRecord.setPointsRecordNo(rs.getInt("points_record_no"));
 				poRecord.setMemberNo(rs.getInt("member_no"));
 				poRecord.setPointsChanged(rs.getInt("points_changed"));
-				poRecord.setTransactionTime(new java.sql.Date(rs.getDate("transaction_time").getTime()));
+				poRecord.setTransactionTime(dateTime);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -149,11 +159,14 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+	            
 				poRecord = new Points_record();
 				poRecord.setPointsRecordNo(rs.getInt("points_record_no"));
 				poRecord.setMemberNo(rs.getInt("member_no"));
 				poRecord.setPointsChanged(rs.getInt("points_changed"));
-				poRecord.setTransactionTime(new java.sql.Date(rs.getDate("transaction_time").getTime()));
+				poRecord.setTransactionTime(dateTime);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

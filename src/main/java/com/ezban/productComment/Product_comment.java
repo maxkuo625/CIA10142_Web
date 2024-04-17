@@ -6,7 +6,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime; 
 
 import javax.persistence.Column;
 
@@ -25,9 +26,8 @@ public class Product_comment {
 	private Integer productRate;
 	@Column(name = "product_comment_content")
 	private String productCommentContent;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "product_comment_date")
-	private Date productCommentDate;
+	private LocalDateTime productCommentDate;
 	@Column(name = "product_comment_status")
 	private Byte productCommentStatus;
 	
@@ -37,7 +37,7 @@ public class Product_comment {
 	}
 
 	public Product_comment(Integer productCommentNo, Integer productNo, Integer memberNo, Integer productRate,
-			String productCommentContent, Date productCommentDate, Byte productCommentStatus) {
+			String productCommentContent, LocalDateTime productCommentDate, Byte productCommentStatus) {
 		super();
 		this.productCommentNo = productCommentNo;
 		this.productNo = productNo;
@@ -88,11 +88,11 @@ public class Product_comment {
 		this.productCommentContent = productCommentContent;
 	}
 
-	public Date getProductCommentDate() {
+	public LocalDateTime getProductCommentDate() {
 		return productCommentDate;
 	}
 
-	public void setProductCommentDate(Date productCommentDate) {
+	public void setProductCommentDate(LocalDateTime productCommentDate) {
 		this.productCommentDate = productCommentDate;
 	}
 
@@ -103,6 +103,8 @@ public class Product_comment {
 	public void setProductCommentStatus(Byte productCommentStatus) {
 		this.productCommentStatus = productCommentStatus;
 	}
+
+	
 	
 	
 }

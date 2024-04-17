@@ -6,7 +6,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime; 
 
 import javax.persistence.Column;
 
@@ -27,9 +28,8 @@ public class Notification {
 	private String notificationContent;
 	@Column(name = "read_status")
 	private Byte readStatus;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "notification_time")
-	private Date notificationTime;
+	private LocalDateTime notificationTime;
 	
 	public Notification() {
 		super();
@@ -37,7 +37,7 @@ public class Notification {
 	}
 
 	public Notification(Integer notificationNo, Integer memberNo, Integer hostNo, Integer adminNo,
-			String notificationContent, Byte readStatus, Date notificationTime) {
+			String notificationContent, Byte readStatus, LocalDateTime notificationTime) {
 		super();
 		this.notificationNo = notificationNo;
 		this.memberNo = memberNo;
@@ -96,13 +96,14 @@ public class Notification {
 		this.readStatus = readStatus;
 	}
 
-	public Date getNotificationTime() {
+	public LocalDateTime getNotificationTime() {
 		return notificationTime;
 	}
 
-	public void setNotificationTime(Date notificationTime) {
+	public void setNotificationTime(LocalDateTime notificationTime) {
 		this.notificationTime = notificationTime;
 	}
+	
 	
 	
 }

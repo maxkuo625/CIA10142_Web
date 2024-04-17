@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ezban.member.JDBCUtil;
-import com.ezban.productComment.Product_comment;
 
 public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 
@@ -29,63 +29,67 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 	}
 
 	public int add(Event_comment ecomment) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+	    try {
+	        con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
+	        pstmt = con.prepareStatement(Insert_STMT);
 
-		try {
+	        pstmt.setInt(1, ecomment.getEventCommentNo());
+	        pstmt.setInt(2, ecomment.getEventNo());
+	        pstmt.setInt(3, ecomment.getMemberNo());
+	        pstmt.setString(4, ecomment.getEventCommentContent());
+	        pstmt.setInt(5, ecomment.getEventCommentRate());
+	        
+	        // 将LocalDateTime对象转换为Timestamp对象
+	        LocalDateTime dateTime = ecomment.getEventCommentTime();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(6, timestamp);
+	        
+	        pstmt.setByte(7, ecomment.getEventCommentStatus());
 
-			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
-			pstmt = con.prepareStatement(Insert_STMT);
-
-			pstmt.setInt(1, ecomment.getEventCommentNo());
-			pstmt.setInt(2, ecomment.getEventNo());
-			pstmt.setInt(3, ecomment.getMemberNo());
-			pstmt.setString(4, ecomment.getEventCommentContent());
-			pstmt.setInt(5, ecomment.getEventCommentRate());
-			pstmt.setDate(6, new java.sql.Date(ecomment.getEventCommentTime().getTime()));
-			pstmt.setByte(7, ecomment.getEventCommentStatus());
-
-			return pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			se.printStackTrace();
-			// Clean up JDBC resources
-		} finally {
-			closeResources(con, pstmt, null);
-		}
-		return -1;
+	        // 执行插入操作并返回受影响的行数
+	        return pstmt.executeUpdate();
+	    } catch (SQLException se) {
+	        se.printStackTrace();
+	        // Clean up JDBC resources
+	    } finally {
+	        closeResources(con, pstmt, null);
+	    }
+	    return -1;
 	}
 
 	public int update(Event_comment ecomment) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+	    try {
+	        con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
+	        pstmt = con.prepareStatement(Update_STMT);
 
-		try {
+	        pstmt.setInt(1, ecomment.getEventNo());
+	        pstmt.setInt(2, ecomment.getMemberNo());
+	        pstmt.setString(3, ecomment.getEventCommentContent());
+	        pstmt.setInt(4, ecomment.getEventCommentRate());
+	        
+	        // 使用当前的时间戳来更新时间戳列
+	        LocalDateTime dateTime = LocalDateTime.now();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(5, timestamp);
+	        
+	        pstmt.setByte(6, ecomment.getEventCommentStatus());
+	        pstmt.setInt(7, ecomment.getEventCommentNo());
 
-			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
-			pstmt = con.prepareStatement(Update_STMT);
-
-			pstmt.setInt(1, ecomment.getEventCommentNo());
-			pstmt.setInt(2, ecomment.getEventNo());
-			pstmt.setInt(3, ecomment.getMemberNo());
-			pstmt.setString(4, ecomment.getEventCommentContent());
-			pstmt.setInt(5, ecomment.getEventCommentRate());
-			pstmt.setDate(6, new java.sql.Date(ecomment.getEventCommentTime().getTime()));
-			pstmt.setByte(7, ecomment.getEventCommentStatus());
-
-			return pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			se.printStackTrace();
-			// Clean up JDBC resources
-		} finally {
-			closeResources(con, pstmt, null);
-		}
-		return -1;
+	        // 执行更新操作并返回受影响的行数
+	        return pstmt.executeUpdate();
+	    } catch (SQLException se) {
+	        se.printStackTrace();
+	        // Clean up JDBC resources
+	    } finally {
+	        closeResources(con, pstmt, null);
+	    }
+	    return -1;
 	}
 	
 	public int delete(Integer event_comment_no) {
@@ -112,36 +116,40 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 	}
 	
 	public Event_comment findByPK(Integer event_comment_no) {
+	    Event_comment ecomment = null;
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 
-		Event_comment ecomment = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	    try {
+	        con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
+	        pstmt = con.prepareStatement(FIND_BY_PK);
+	        pstmt.setInt(1, event_comment_no);
+	        rs = pstmt.executeQuery();
 
-		try {
+	        // 移动结果集指针到第一行
+	        if (rs.next()) {
+	            // 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
 
-			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
-			pstmt = con.prepareStatement(FIND_BY_PK);
-			pstmt.setInt(1, event_comment_no);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				ecomment = new Event_comment();
-				ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
-				ecomment.setEventNo(rs.getInt("event_no"));
-				ecomment.setMemberNo(rs.getInt("member_no"));
-				ecomment.setEventCommentContent(rs.getString("event_comment_content"));
-				ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
-				ecomment.setEventCommentTime(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
-				ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-			// Clean up JDBC resources
-		} finally {
-			closeResources(con, pstmt, rs);
-		}
-		return ecomment;
+	            // 创建Event_comment对象并设置属性
+	            ecomment = new Event_comment();
+	            ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
+	            ecomment.setEventNo(rs.getInt("event_no"));
+	            ecomment.setMemberNo(rs.getInt("member_no"));
+	            ecomment.setEventCommentContent(rs.getString("event_comment_content"));
+	            ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
+	            ecomment.setEventCommentTime(dateTime); // 设置转换后的LocalDateTime
+	            ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
+	        }
+	    } catch (SQLException se) {
+	        se.printStackTrace();
+	        // Clean up JDBC resources
+	    } finally {
+	        closeResources(con, pstmt, rs);
+	    }
+	    return ecomment;
 	}
 	
 	public List<Event_comment> getAll() {
@@ -159,14 +167,19 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				ecomment = new Event_comment();
-				ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
-				ecomment.setEventNo(rs.getInt("event_no"));
-				ecomment.setMemberNo(rs.getInt("member_no"));
-				ecomment.setEventCommentContent(rs.getString("event_comment_content"));
-				ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
-				ecomment.setEventCommentTime(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
-				ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+
+	            // 创建Event_comment对象并设置属性
+	            ecomment = new Event_comment();
+	            ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
+	            ecomment.setEventNo(rs.getInt("event_no"));
+	            ecomment.setMemberNo(rs.getInt("member_no"));
+	            ecomment.setEventCommentContent(rs.getString("event_comment_content"));
+	            ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
+	            ecomment.setEventCommentTime(dateTime); // 设置转换后的LocalDateTime
+	            ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

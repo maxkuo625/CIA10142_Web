@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
 import com.ezban.member.JDBCUtil;
 
@@ -43,7 +44,12 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			pstmt.setInt(3, pcomment.getMemberNo());
 			pstmt.setInt(4, pcomment.getProductRate());
 			pstmt.setString(5, pcomment.getProductCommentContent());
-			pstmt.setDate(6, new java.sql.Date(pcomment.getProductCommentDate().getTime()));
+			
+			// 将LocalDateTime对象转换为Timestamp对象
+	        LocalDateTime dateTime = pcomment.getProductCommentDate();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(6, timestamp);
+	        
 			pstmt.setByte(7, pcomment.getProductCommentStatus());
 
 			return pstmt.executeUpdate();
@@ -73,7 +79,12 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			pstmt.setInt(3, pcomment.getMemberNo());
 			pstmt.setInt(4, pcomment.getProductRate());
 			pstmt.setString(5, pcomment.getProductCommentContent());
-			pstmt.setDate(6, new java.sql.Date(pcomment.getProductCommentDate().getTime()));
+			
+			// 将LocalDateTime对象转换为Timestamp对象
+	        LocalDateTime dateTime = pcomment.getProductCommentDate();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(6, timestamp);
+	        
 			pstmt.setByte(7, pcomment.getProductCommentStatus());
 
 			return pstmt.executeUpdate();
@@ -126,13 +137,18 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+	            
 				pcomment = new Product_comment();
 				pcomment.setProductCommentNo(rs.getInt("product_comment_no"));
 				pcomment.setProductNo(rs.getInt("product_no"));
 				pcomment.setMemberNo(rs.getInt("member_no"));
 				pcomment.setProductRate(rs.getInt("product_rate"));
 				pcomment.setProductCommentContent(rs.getString("product_comment_content"));
-				pcomment.setProductCommentDate(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
+				pcomment.setProductCommentDate(dateTime);
 				pcomment.setProductCommentStatus(rs.getByte("product_comment_status"));
 			}
 		} catch (SQLException se) {
@@ -159,13 +175,17 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+	            
 				pcomment = new Product_comment();
 				pcomment.setProductCommentNo(rs.getInt("product_comment_no"));
 				pcomment.setProductNo(rs.getInt("product_no"));
 				pcomment.setMemberNo(rs.getInt("member_no"));
 				pcomment.setProductRate(rs.getInt("product_rate"));
 				pcomment.setProductCommentContent(rs.getString("product_comment_content"));
-				pcomment.setProductCommentDate(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
+				pcomment.setProductCommentDate(dateTime);
 				pcomment.setProductCommentStatus(rs.getByte("product_comment_status"));
 			}
 		} catch (SQLException se) {

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,9 @@ public class notificationDAOJDBCImpl implements notificationDAO {
 			pstmt.setInt(4, notify.getAdminNo());
 			pstmt.setString(5, notify.getNotificationContent());
 			pstmt.setByte(6, notify.getReadStatus());
-			pstmt.setDate(7, new java.sql.Date(notify.getNotificationTime().getTime()));
+			LocalDateTime dateTime = notify.getNotificationTime();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(7, timestamp);
 
 			return pstmt.executeUpdate();
 
@@ -73,7 +76,10 @@ public class notificationDAOJDBCImpl implements notificationDAO {
 			pstmt.setInt(4, notify.getAdminNo());
 			pstmt.setString(5, notify.getNotificationContent());
 			pstmt.setByte(6, notify.getReadStatus());
-			pstmt.setDate(7, new java.sql.Date(notify.getNotificationTime().getTime()));
+			LocalDateTime dateTime = notify.getNotificationTime();
+	        java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(dateTime);
+	        pstmt.setTimestamp(7, timestamp);
+
 
 			return pstmt.executeUpdate();
 
@@ -125,14 +131,19 @@ public class notificationDAOJDBCImpl implements notificationDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				notify = new Notification();
-				notify.setNotificationNo(rs.getInt("notification_no"));
-				notify.setMemberNo(rs.getInt("member_no"));
-				notify.setHostNo(rs.getInt("host_no"));
-				notify.setAdminNo(rs.getInt("admin_no"));
-				notify.setNotificationContent(rs.getString("notification_content"));
-				notify.setReadStatus(rs.getByte("read_status"));
-				notify.setNotificationTime(new java.sql.Date(rs.getDate("notification_time").getTime()));
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+
+	            notify = new Notification();
+	            notify.setNotificationNo(rs.getInt("notification_no"));
+	            notify.setMemberNo(rs.getInt("member_no"));
+	            notify.setHostNo(rs.getInt("host_no"));
+	            notify.setAdminNo(rs.getInt("admin_no"));
+	            notify.setNotificationContent(rs.getString("notification_content"));
+	            notify.setReadStatus(rs.getByte("read_status"));
+	            notify.setNotificationTime(dateTime); // 设置转换后的LocalDateTime
+	           
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -158,14 +169,18 @@ public class notificationDAOJDBCImpl implements notificationDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				notify = new Notification();
-				notify.setNotificationNo(rs.getInt("notification_no"));
-				notify.setMemberNo(rs.getInt("member_no"));
-				notify.setHostNo(rs.getInt("host_no"));
-				notify.setAdminNo(rs.getInt("admin_no"));
-				notify.setNotificationContent(rs.getString("notification_content"));
-				notify.setReadStatus(rs.getByte("read_status"));
-				notify.setNotificationTime(new java.sql.Date(rs.getDate("notification_time").getTime()));
+				// 获取时间戳并转换为LocalDateTime
+	            java.sql.Timestamp timestamp = rs.getTimestamp("event_comment_time");
+	            LocalDateTime dateTime = timestamp.toLocalDateTime();
+
+	            notify = new Notification();
+	            notify.setNotificationNo(rs.getInt("notification_no"));
+	            notify.setMemberNo(rs.getInt("member_no"));
+	            notify.setHostNo(rs.getInt("host_no"));
+	            notify.setAdminNo(rs.getInt("admin_no"));
+	            notify.setNotificationContent(rs.getString("notification_content"));
+	            notify.setReadStatus(rs.getByte("read_status"));
+	            notify.setNotificationTime(dateTime); // 设置转换后的LocalDateTime
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
