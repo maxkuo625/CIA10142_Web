@@ -15,87 +15,87 @@ public class Member {
 	
 	@Id
 	@Column(name = "member_no")
-	private Integer member_no;
+	private Integer memberNo;
 	@Column(name = "member_mail")
-	private String memeber_mail;
+	private String memeberMail;
 	@Column(name = "member_pwd")
-	private String member_pwd;
+	private String memberPwd;
 	@Column(name = "member_name")
-	private String member_name;
+	private String memberName;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
 	private Date birthday;
 	@Column(name = "gender")
 	private Integer gender;
 	@Column(name = "member_phone")
-	private String member_phone;
+	private String memberPhone;
 	@Column(name = "address")
 	private String address;
 	@Column(name = "common_recipient")
-	private String common_recipient;
+	private String commonRecipient;
 	@Column(name = "common_recipient_phone")
-	private String common_recipient_phone;
+	private String commonRecipientPhone;
 	@Column(name = "common_recipient_address")
-	private String common_recipient_address;
+	private String commonRecipientAddress;
 	@Column(name = "member_status")
-	private Integer member_status;
+	private Byte memberStatus;
 	@Column(name = "member_points")
-	private Integer member_points;
+	private Integer memberPoints;
 	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(Integer member_no, String memeber_mail, String member_pwd, String member_name, Date birthday,
-			Integer gender, String member_phone, String address, String common_recipient, String common_recipient_phone,
-			String common_recipient_address, Integer member_status, Integer member_points) {
+	public Member(Integer memberNo, String memeberMail, String memberPwd, String memberName, Date birthday,
+			Integer gender, String memberPhone, String address, String commonRecipient, String commonRecipientPhone,
+			String commonRecipientAddress, Byte memberStatus, Integer memberPoints) {
 		super();
-		this.member_no = member_no;
-		this.memeber_mail = memeber_mail;
-		this.member_pwd = member_pwd;
-		this.member_name = member_name;
+		this.memberNo = memberNo;
+		this.memeberMail = memeberMail;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
 		this.birthday = birthday;
 		this.gender = gender;
-		this.member_phone = member_phone;
+		this.memberPhone = memberPhone;
 		this.address = address;
-		this.common_recipient = common_recipient;
-		this.common_recipient_phone = common_recipient_phone;
-		this.common_recipient_address = common_recipient_address;
-		this.member_status = member_status;
-		this.member_points = member_points;
+		this.commonRecipient = commonRecipient;
+		this.commonRecipientPhone = commonRecipientPhone;
+		this.commonRecipientAddress = commonRecipientAddress;
+		this.memberStatus = memberStatus;
+		this.memberPoints = memberPoints;
 	}
 
-	public Integer getMember_no() {
-		return member_no;
+	public Integer getMemberNo() {
+		return memberNo;
 	}
 
-	public void setMember_no(Integer member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(Integer memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public String getMemeber_mail() {
-		return memeber_mail;
+	public String getMemeberMail() {
+		return memeberMail;
 	}
 
-	public void setMemeber_mail(String memeber_mail) {
-		this.memeber_mail = memeber_mail;
+	public void setMemeberMail(String memeberMail) {
+		this.memeberMail = memeberMail;
 	}
 
-	public String getMember_pwd() {
-		return member_pwd;
+	public String getMemberPwd() {
+		return memberPwd;
 	}
 
-	public void setMember_pwd(String member_pwd) {
-		this.member_pwd = member_pwd;
+	public void setMemberPwd(String memberPwd) {
+		this.memberPwd = memberPwd;
 	}
 
-	public String getMember_name() {
-		return member_name;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 	public Date getBirthday() {
@@ -114,12 +114,12 @@ public class Member {
 		this.gender = gender;
 	}
 
-	public String getMember_phone() {
-		return member_phone;
+	public String getMemberPhone() {
+		return memberPhone;
 	}
 
-	public void setMember_phone(String member_phone) {
-		this.member_phone = member_phone;
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
 	}
 
 	public String getAddress() {
@@ -130,47 +130,44 @@ public class Member {
 		this.address = address;
 	}
 
-	public String getCommon_recipient() {
-		return common_recipient;
+	public String getCommonRecipient() {
+		return commonRecipient;
 	}
 
-	public void setCommon_recipient(String common_recipient) {
-		this.common_recipient = common_recipient;
+	public void setCommonRecipient(String commonRecipient) {
+		this.commonRecipient = commonRecipient;
 	}
 
-	public String getCommon_recipient_phone() {
-		return common_recipient_phone;
+	public String getCommonRecipientPhone() {
+		return commonRecipientPhone;
 	}
 
-	public void setCommon_recipient_phone(String common_recipient_phone) {
-		this.common_recipient_phone = common_recipient_phone;
+	public void setCommonRecipientPhone(String commonRecipientPhone) {
+		this.commonRecipientPhone = commonRecipientPhone;
 	}
 
-	public String getCommon_recipient_address() {
-		return common_recipient_address;
+	public String getCommonRecipientAddress() {
+		return commonRecipientAddress;
 	}
 
-	public void setCommon_recipient_address(String common_recipient_address) {
-		this.common_recipient_address = common_recipient_address;
+	public void setCommonRecipientAddress(String commonRecipientAddress) {
+		this.commonRecipientAddress = commonRecipientAddress;
 	}
 
-	public Integer getMember_status() {
-		return member_status;
+	public Byte getMemberStatus() {
+		return memberStatus;
 	}
 
-	public void setMember_status(Integer member_status) {
-		this.member_status = member_status;
+	public void setMemberStatus(Byte memberStatus) {
+		this.memberStatus = memberStatus;
 	}
 
-	public Integer getMember_points() {
-		return member_points;
+	public Integer getMemberPoints() {
+		return memberPoints;
 	}
 
-	public void setMember_points(Integer member_points) {
-		this.member_points = member_points;
+	public void setMemberPoints(Integer memberPoints) {
+		this.memberPoints = memberPoints;
 	}
-	
-	
-	
 
 }

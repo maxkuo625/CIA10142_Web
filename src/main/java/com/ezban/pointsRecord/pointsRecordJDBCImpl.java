@@ -37,10 +37,10 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Insert_STMT);
 
-			pstmt.setInt(1, poRecord.getPoints_record_no());
-			pstmt.setInt(2, poRecord.getMember_no());
-			pstmt.setInt(3, poRecord.getPoints_changed());
-			pstmt.setDate(4, new java.sql.Date(poRecord.getTransaction_time().getTime()));
+			pstmt.setInt(1, poRecord.getPointsRecordNo());
+			pstmt.setInt(2, poRecord.getMemberNo());
+			pstmt.setInt(3, poRecord.getPointsChanged());
+			pstmt.setDate(4, new java.sql.Date(poRecord.getTransactionTime().getTime()));
 
 			return pstmt.executeUpdate();
 
@@ -64,10 +64,10 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Update_STMT);
 
-			pstmt.setInt(1, poRecord.getPoints_record_no());
-			pstmt.setInt(2, poRecord.getMember_no());
-			pstmt.setInt(3, poRecord.getPoints_changed());
-			pstmt.setDate(4, new java.sql.Date(poRecord.getTransaction_time().getTime()));
+			pstmt.setInt(1, poRecord.getPointsRecordNo());
+			pstmt.setInt(2, poRecord.getMemberNo());
+			pstmt.setInt(3, poRecord.getPointsChanged());
+			pstmt.setDate(4, new java.sql.Date(poRecord.getTransactionTime().getTime()));
 
 			return pstmt.executeUpdate();
 
@@ -120,10 +120,10 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 
 			while (rs.next()) {
 				poRecord = new Points_record();
-				poRecord.setPoints_record_no(rs.getInt("points_record_no"));
-				poRecord.setMember_no(rs.getInt("member_no"));
-				poRecord.setPoints_changed(rs.getInt("points_changed"));
-				poRecord.setTransaction_time(new java.sql.Date(rs.getDate("transaction_time").getTime()));
+				poRecord.setPointsRecordNo(rs.getInt("points_record_no"));
+				poRecord.setMemberNo(rs.getInt("member_no"));
+				poRecord.setPointsChanged(rs.getInt("points_changed"));
+				poRecord.setTransactionTime(new java.sql.Date(rs.getDate("transaction_time").getTime()));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -150,10 +150,10 @@ public class pointsRecordJDBCImpl implements pointsRecordDAO {
 
 			while (rs.next()) {
 				poRecord = new Points_record();
-				poRecord.setPoints_record_no(rs.getInt("points_record_no"));
-				poRecord.setMember_no(rs.getInt("member_no"));
-				poRecord.setPoints_changed(rs.getInt("points_changed"));
-				poRecord.setTransaction_time(new java.sql.Date(rs.getDate("transaction_time").getTime()));
+				poRecord.setPointsRecordNo(rs.getInt("points_record_no"));
+				poRecord.setMemberNo(rs.getInt("member_no"));
+				poRecord.setPointsChanged(rs.getInt("points_changed"));
+				poRecord.setTransactionTime(new java.sql.Date(rs.getDate("transaction_time").getTime()));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

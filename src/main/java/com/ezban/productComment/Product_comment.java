@@ -16,95 +16,93 @@ public class Product_comment {
 	
 	@Id
 	@Column(name = "product_comment_no")
-	private Integer product_comment_no;
+	private Integer productCommentNo;
 	@Column(name = "product_no")
-	private Integer product_no;
+	private Integer productNo;
 	@Column(name = "member_no")
-	private Integer member_no;
+	private Integer memberNo;
 	@Column(name = "product_rate")
-	private Integer product_rate;
+	private Integer productRate;
 	@Column(name = "product_comment_content")
-	private String product_comment_content;
+	private String productCommentContent;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "product_comment_date")
-	private Date product_comment_date;
+	private Date productCommentDate;
 	@Column(name = "product_comment_status")
-	private Integer product_comment_status;
+	private Byte productCommentStatus;
 	
 	public Product_comment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product_comment(Integer product_comment_no, Integer product_no, Integer member_no, Integer product_rate,
-			String product_comment_content, Date product_comment_date, Integer product_comment_status) {
+	public Product_comment(Integer productCommentNo, Integer productNo, Integer memberNo, Integer productRate,
+			String productCommentContent, Date productCommentDate, Byte productCommentStatus) {
 		super();
-		this.product_comment_no = product_comment_no;
-		this.product_no = product_no;
-		this.member_no = member_no;
-		this.product_rate = product_rate;
-		this.product_comment_content = product_comment_content;
-		this.product_comment_date = product_comment_date;
-		this.product_comment_status = product_comment_status;
+		this.productCommentNo = productCommentNo;
+		this.productNo = productNo;
+		this.memberNo = memberNo;
+		this.productRate = productRate;
+		this.productCommentContent = productCommentContent;
+		this.productCommentDate = productCommentDate;
+		this.productCommentStatus = productCommentStatus;
 	}
 
-	public Integer getProduct_comment_no() {
-		return product_comment_no;
+	public Integer getProductCommentNo() {
+		return productCommentNo;
 	}
 
-	public void setProduct_comment_no(Integer product_comment_no) {
-		this.product_comment_no = product_comment_no;
+	public void setProductCommentNo(Integer productCommentNo) {
+		this.productCommentNo = productCommentNo;
 	}
 
-	public Integer getProduct_no() {
-		return product_no;
+	public Integer getProductNo() {
+		return productNo;
 	}
 
-	public void setProduct_no(Integer product_no) {
-		this.product_no = product_no;
+	public void setProductNo(Integer productNo) {
+		this.productNo = productNo;
 	}
 
-	public Integer getMember_no() {
-		return member_no;
+	public Integer getMemberNo() {
+		return memberNo;
 	}
 
-	public void setMember_no(Integer member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(Integer memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public Integer getProduct_rate() {
-		return product_rate;
+	public Integer getProductRate() {
+		return productRate;
 	}
 
-	public void setProduct_rate(Integer product_rate) {
-		this.product_rate = product_rate;
+	public void setProductRate(Integer productRate) {
+		this.productRate = productRate;
 	}
 
-	public String getProduct_comment_content() {
-		return product_comment_content;
+	public String getProductCommentContent() {
+		return productCommentContent;
 	}
 
-	public void setProduct_comment_content(String product_comment_content) {
-		this.product_comment_content = product_comment_content;
+	public void setProductCommentContent(String productCommentContent) {
+		this.productCommentContent = productCommentContent;
 	}
 
-	public Date getProduct_comment_date() {
-		return product_comment_date;
+	public Date getProductCommentDate() {
+		return productCommentDate;
 	}
 
-	public void setProduct_comment_date(Date product_comment_date) {
-		this.product_comment_date = product_comment_date;
+	public void setProductCommentDate(Date productCommentDate) {
+		this.productCommentDate = productCommentDate;
 	}
 
-	public Integer getProduct_comment_status() {
-		return product_comment_status;
+	public Byte getProductCommentStatus() {
+		return productCommentStatus;
 	}
 
-	public void setProduct_comment_status(Integer product_comment_status) {
-		this.product_comment_status = product_comment_status;
+	public void setProductCommentStatus(Byte productCommentStatus) {
+		this.productCommentStatus = productCommentStatus;
 	}
 	
 	
-	
-
 }

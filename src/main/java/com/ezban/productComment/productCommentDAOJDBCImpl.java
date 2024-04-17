@@ -38,13 +38,13 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Insert_STMT);
 
-			pstmt.setInt(1, pcomment.getProduct_comment_no());
-			pstmt.setInt(2, pcomment.getProduct_no());
-			pstmt.setInt(3, pcomment.getMember_no());
-			pstmt.setInt(4, pcomment.getProduct_rate());
-			pstmt.setString(5, pcomment.getProduct_comment_content());
-			pstmt.setDate(6, new java.sql.Date(pcomment.getProduct_comment_date().getTime()));
-			pstmt.setInt(7, pcomment.getProduct_comment_status());
+			pstmt.setInt(1, pcomment.getProductCommentNo());
+			pstmt.setInt(2, pcomment.getProductNo());
+			pstmt.setInt(3, pcomment.getMemberNo());
+			pstmt.setInt(4, pcomment.getProductRate());
+			pstmt.setString(5, pcomment.getProductCommentContent());
+			pstmt.setDate(6, new java.sql.Date(pcomment.getProductCommentDate().getTime()));
+			pstmt.setByte(7, pcomment.getProductCommentStatus());
 
 			return pstmt.executeUpdate();
 
@@ -68,13 +68,13 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Update_STMT);
 
-			pstmt.setInt(1, pcomment.getProduct_comment_no());
-			pstmt.setInt(1, pcomment.getProduct_no());
-			pstmt.setInt(1, pcomment.getMember_no());
-			pstmt.setInt(1, pcomment.getProduct_rate());
-			pstmt.setString(5, pcomment.getProduct_comment_content());
-			pstmt.setDate(5, new java.sql.Date(pcomment.getProduct_comment_date().getTime()));
-			pstmt.setInt(7, pcomment.getProduct_comment_status());
+			pstmt.setInt(1, pcomment.getProductCommentNo());
+			pstmt.setInt(2, pcomment.getProductNo());
+			pstmt.setInt(3, pcomment.getMemberNo());
+			pstmt.setInt(4, pcomment.getProductRate());
+			pstmt.setString(5, pcomment.getProductCommentContent());
+			pstmt.setDate(6, new java.sql.Date(pcomment.getProductCommentDate().getTime()));
+			pstmt.setByte(7, pcomment.getProductCommentStatus());
 
 			return pstmt.executeUpdate();
 
@@ -127,13 +127,13 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 
 			while (rs.next()) {
 				pcomment = new Product_comment();
-				pcomment.setProduct_comment_no(rs.getInt("product_comment_no"));
-				pcomment.setProduct_no(rs.getInt("product_no"));
-				pcomment.setMember_no(rs.getInt("member_no"));
-				pcomment.setProduct_rate(rs.getInt("product_rate"));
-				pcomment.setProduct_comment_content(rs.getString("product_comment_content"));
-				pcomment.setProduct_comment_date(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
-				pcomment.setProduct_comment_status(rs.getInt("product_comment_status"));
+				pcomment.setProductCommentNo(rs.getInt("product_comment_no"));
+				pcomment.setProductNo(rs.getInt("product_no"));
+				pcomment.setMemberNo(rs.getInt("member_no"));
+				pcomment.setProductRate(rs.getInt("product_rate"));
+				pcomment.setProductCommentContent(rs.getString("product_comment_content"));
+				pcomment.setProductCommentDate(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
+				pcomment.setProductCommentStatus(rs.getByte("product_comment_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -160,13 +160,13 @@ public class productCommentDAOJDBCImpl implements productCommentDAO {
 
 			while (rs.next()) {
 				pcomment = new Product_comment();
-				pcomment.setProduct_comment_no(rs.getInt("product_comment_no"));
-				pcomment.setProduct_no(rs.getInt("product_no"));
-				pcomment.setMember_no(rs.getInt("member_no"));
-				pcomment.setProduct_rate(rs.getInt("product_rate"));
-				pcomment.setProduct_comment_content(rs.getString("product_comment_content"));
-				pcomment.setProduct_comment_date(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
-				pcomment.setProduct_comment_status(rs.getInt("product_comment_status"));
+				pcomment.setProductCommentNo(rs.getInt("product_comment_no"));
+				pcomment.setProductNo(rs.getInt("product_no"));
+				pcomment.setMemberNo(rs.getInt("member_no"));
+				pcomment.setProductRate(rs.getInt("product_rate"));
+				pcomment.setProductCommentContent(rs.getString("product_comment_content"));
+				pcomment.setProductCommentDate(new java.sql.Date(rs.getDate("product_comment_date").getTime()));
+				pcomment.setProductCommentStatus(rs.getByte("product_comment_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

@@ -1,4 +1,4 @@
-package com.ezban.function;
+package com.ezban.host;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,14 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ezban.member.JDBCUtil;
+import com.ezban.member.Member;
 
-public class FunctionDAOJDBCImpl implements FunctionDAO {
-
-	private static final String Insert_STMT = "INSERT INTO function(func_no, func_name) VALUES (?, ?)";
-	private static final String Update_STMT = "UPDATE function SET func_name = ? WHERE func_no = ?";
-	private static final String Delete_STMT = "DELETE FROM function WHERE func_no = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM function WHERE func_no = ?";
-	private static final String GET_ALL = "SELECT * FROM function";
+public class HostDAOJDBCImpl {
+	
+	private static final String Insert_STMT = "INSERT INTO host"
+			+ "(host_no, host_account, host_pwd, host_name, host_mail, host_phone, host_status)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String Update_STMT = "UPDATE host SET host_account = ?, host_pwd = ?, host_name = ?, host_mail = ?, host_phone = ?, member_status = ?, WHERE member_no = ?";
+	private static final String FIND_BY_PK = "SELECT * FROM host WHERE host_no = ?";
+	private static final String GET_ALL = "SELECT * FROM host";
 	
 	static {
 		try {
@@ -26,8 +28,8 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 		}
 	}
 	
-	public int add(Function func) {
-		
+	public int add(Host host) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -36,11 +38,15 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Insert_STMT);
 
-			pstmt.setInt(1, func.getFunc_no());
-			pstmt.setString(2, func.getFunc_name());
+			pstmt.setInt(1, host.getHostNo());
+			pstmt.setString(2, host.getHostAccount());
+			pstmt.setString(3, host.getHostPwd());
+			pstmt.setString(4, host.getHostName());
+			pstmt.setString(7, host.getHostMail());
+			pstmt.setString(8, host.getHostPhone());
+			pstmt.setByte(9, host.getHostStatus());
 			
-			
-			return pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
 			// Handle any driver errors
 		} catch (SQLException se) {
@@ -52,8 +58,8 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 		return -1;
 	}
 	
-	public int update(Function func) {
-		
+	public int update(Host host) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -61,9 +67,14 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Update_STMT);
-			
-			pstmt.setInt(1, func.getFunc_no());
-			pstmt.setString(2, func.getFunc_name());
+
+			pstmt.setInt(1, host.getHostNo());
+			pstmt.setString(2, host.getHostAccount());
+			pstmt.setString(3, host.getHostPwd());
+			pstmt.setString(4, host.getHostName());
+			pstmt.setString(7, host.getHostMail());
+			pstmt.setString(8, host.getHostPhone());
+			pstmt.setByte(9, host.getHostStatus());
 
 			return pstmt.executeUpdate();
 
@@ -77,33 +88,9 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 		return -1;
 	}
 	
-	
-	public int delete(Integer func_no) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+	public Host findByPK(Integer hostNo) {
 
-		try {
-
-			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
-			pstmt = con.prepareStatement(Delete_STMT);
-
-			pstmt.setInt(1, func_no);
-
-			return pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			se.printStackTrace();
-			// Clean up JDBC resources
-		} finally {
-			closeResources(con, pstmt, null);
-		}
-		return -1;
-	}
-	
-	public Function findByPK(Integer func_no) {
-
-		Function func = null;
+		Host host = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -112,14 +99,19 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(FIND_BY_PK);
-			pstmt.setInt(1, func_no);
+			pstmt.setInt(1, hostNo);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				func = new Function();
-				func.setFunc_no(rs.getInt("func_no"));
-				func.setFunc_name(rs.getString("func_name"));
-		
+				host = new Host();
+				host.setHostNo(rs.getInt("host_no"));
+				host.setHostAccount(rs.getString("host_account"));
+				host.setHostPwd(rs.getString("host_pwd"));
+				host.setHostName(rs.getString("host_name"));
+				host.setHostMail(rs.getString("host_mail"));
+				host.setHostPhone(rs.getString("host_phone"));
+				host.setHostStatus(rs.getByte("host_status"));
+				
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -127,13 +119,13 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 		} finally {
 			closeResources(con, pstmt, rs);
 		}
-		return func;
+		return host;
 	}
 	
-	public List<Function> getAll() {
+	public List<Host> getAll() {
 
-		List<Function> funcList = new ArrayList<>();
-		Function func = null;
+		List<Host> hostList = new ArrayList<>();
+		Host host = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -145,9 +137,14 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				func = new Function();
-				func.setFunc_no(rs.getInt("func_no"));
-				func.setFunc_name(rs.getString("func_name"));
+				host = new Host();
+				host.setHostNo(rs.getInt("host_no"));
+				host.setHostAccount(rs.getString("host_account"));
+				host.setHostPwd(rs.getString("host_pwd"));
+				host.setHostName(rs.getString("host_name"));
+				host.setHostMail(rs.getString("host_mail"));
+				host.setHostPhone(rs.getString("host_phone"));
+				host.setHostStatus(rs.getByte("host_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -155,9 +152,9 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 		} finally {
 			closeResources(con, pstmt, rs);
 		}
-		return funcList;
+		return hostList;
 	}
-	
+
 	private void closeResources(Connection con, PreparedStatement pstmt, ResultSet rs) {
 
 		if (rs != null) {
@@ -182,5 +179,6 @@ public class FunctionDAOJDBCImpl implements FunctionDAO {
 			}
 		}
 	}
+
 
 }

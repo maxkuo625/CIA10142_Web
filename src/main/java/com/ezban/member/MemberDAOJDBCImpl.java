@@ -36,19 +36,19 @@ public class MemberDAOJDBCImpl implements MemberDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Insert_STMT);
 
-			pstmt.setInt(1, mem.getMember_no());
-			pstmt.setString(2, mem.getMemeber_mail());
-			pstmt.setString(3, mem.getMember_pwd());
-			pstmt.setString(4, mem.getMember_name());
+			pstmt.setInt(1, mem.getMemberNo());
+			pstmt.setString(2, mem.getMemeberMail());
+			pstmt.setString(3, mem.getMemberPwd());
+			pstmt.setString(4, mem.getMemberName());
 			pstmt.setDate(5, new java.sql.Date(mem.getBirthday().getTime()));
 			pstmt.setInt(6, mem.getGender());
-			pstmt.setString(7, mem.getMember_phone());
+			pstmt.setString(7, mem.getMemberPhone());
 			pstmt.setString(8, mem.getAddress());
-			pstmt.setString(9, mem.getCommon_recipient());
-			pstmt.setString(10, mem.getCommon_recipient_phone());
-			pstmt.setString(11, mem.getCommon_recipient_address());
-			pstmt.setInt(12, mem.getMember_status());
-			pstmt.setInt(13, mem.getMember_points());
+			pstmt.setString(9, mem.getCommonRecipient());
+			pstmt.setString(10, mem.getCommonRecipientPhone());
+			pstmt.setString(11, mem.getCommonRecipientAddress());
+			pstmt.setByte(12, mem.getMemberStatus());
+			pstmt.setInt(13, mem.getMemberPoints());
 
 			return pstmt.executeUpdate();
 
@@ -72,19 +72,19 @@ public class MemberDAOJDBCImpl implements MemberDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Update_STMT);
 
-			pstmt.setString(1, mem.getMemeber_mail());
-			pstmt.setString(2, mem.getMember_pwd());
-			pstmt.setString(3, mem.getMember_name());
-			pstmt.setDate(4, new java.sql.Date(mem.getBirthday().getTime()));
-			pstmt.setInt(5, mem.getGender());
-			pstmt.setString(6, mem.getMember_phone());
-			pstmt.setString(7, mem.getAddress());
-			pstmt.setString(8, mem.getCommon_recipient());
-			pstmt.setString(9, mem.getCommon_recipient_phone());
-			pstmt.setString(10, mem.getCommon_recipient_address());
-			pstmt.setInt(11, mem.getMember_status());
-			pstmt.setInt(12, mem.getMember_points());
-			pstmt.setInt(13, mem.getMember_no());
+			pstmt.setInt(1, mem.getMemberNo());
+			pstmt.setString(2, mem.getMemeberMail());
+			pstmt.setString(3, mem.getMemberPwd());
+			pstmt.setString(4, mem.getMemberName());
+			pstmt.setDate(5, new java.sql.Date(mem.getBirthday().getTime()));
+			pstmt.setInt(6, mem.getGender());
+			pstmt.setString(7, mem.getMemberPhone());
+			pstmt.setString(8, mem.getAddress());
+			pstmt.setString(9, mem.getCommonRecipient());
+			pstmt.setString(10, mem.getCommonRecipientPhone());
+			pstmt.setString(11, mem.getCommonRecipientAddress());
+			pstmt.setByte(12, mem.getMemberStatus());
+			pstmt.setInt(13, mem.getMemberPoints());
 
 			return pstmt.executeUpdate();
 
@@ -114,19 +114,19 @@ public class MemberDAOJDBCImpl implements MemberDAO {
 
 			while (rs.next()) {
 				mem = new Member();
-				mem.setMember_no(rs.getInt("member_no"));
-				mem.setMemeber_mail(rs.getString("member_mail"));
-				mem.setMember_pwd(rs.getString("member_pwd"));
-				mem.setMember_name(rs.getString("member_name"));
+				mem.setMemberNo(rs.getInt("member_no"));
+				mem.setMemeberMail(rs.getString("member_mail"));
+				mem.setMemberPwd(rs.getString("member_pwd"));
+				mem.setMemberName(rs.getString("member_name"));
 				mem.setBirthday(new java.sql.Date(rs.getDate("birthday").getTime()));
 				mem.setGender(rs.getInt("gender"));
-				mem.setMember_phone(rs.getString("member_phone"));
+				mem.setMemberPhone(rs.getString("member_phone"));
 				mem.setAddress(rs.getString("address"));
-				mem.setCommon_recipient(rs.getString("common_recipient"));
-				mem.setCommon_recipient_phone(rs.getString("common_recipient_phone"));
-				mem.setCommon_recipient_address(rs.getString("common_recipient_address"));
-				mem.setMember_status(rs.getInt("member_status"));
-				mem.setMember_points(rs.getInt("member_points"));
+				mem.setCommonRecipient(rs.getString("common_recipient"));
+				mem.setCommonRecipientPhone(rs.getString("common_recipient_phone"));
+				mem.setCommonRecipientAddress(rs.getString("common_recipient_address"));
+				mem.setMemberStatus(rs.getByte("member_status"));
+				mem.setMemberPoints(rs.getInt("member_points"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -153,19 +153,19 @@ public class MemberDAOJDBCImpl implements MemberDAO {
 
 			while (rs.next()) {
 				mem = new Member();
-				mem.setMember_no(rs.getInt("member_no"));
-				mem.setMemeber_mail(rs.getString("member_mail"));
-				mem.setMember_pwd(rs.getString("member_pwd"));
-				mem.setMember_name(rs.getString("member_name"));
+				mem.setMemberNo(rs.getInt("member_no"));
+				mem.setMemeberMail(rs.getString("member_mail"));
+				mem.setMemberPwd(rs.getString("member_pwd"));
+				mem.setMemberName(rs.getString("member_name"));
 				mem.setBirthday(new java.sql.Date(rs.getDate("birthday").getTime()));
 				mem.setGender(rs.getInt("gender"));
-				mem.setMember_phone(rs.getString("member_phone"));
+				mem.setMemberPhone(rs.getString("member_phone"));
 				mem.setAddress(rs.getString("address"));
-				mem.setCommon_recipient(rs.getString("common_recipient"));
-				mem.setCommon_recipient_phone(rs.getString("common_recipient_phone"));
-				mem.setCommon_recipient_address(rs.getString("common_recipient_address"));
-				mem.setMember_status(rs.getInt("member_status"));
-				mem.setMember_points(rs.getInt("member_points"));
+				mem.setCommonRecipient(rs.getString("common_recipient"));
+				mem.setCommonRecipientPhone(rs.getString("common_recipient_phone"));
+				mem.setCommonRecipientAddress(rs.getString("common_recipient_address"));
+				mem.setMemberStatus(rs.getByte("member_status"));
+				mem.setMemberPoints(rs.getInt("member_points"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

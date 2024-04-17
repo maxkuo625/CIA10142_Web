@@ -17,60 +17,59 @@ public class Points_record {
 	
 	@Id
 	@Column(name = "points_record_no")
-	private Integer points_record_no;
+	private Integer pointsRecordNo;
 	@Column(name = "member_no")
-	private Integer member_no;
+	private Integer memberNo;
 	@Column(name = "points_changed")
-	private Integer points_changed;
+	private Integer pointsChanged;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "transaction_time")
-	private Date transaction_time;
+	private Date transactionTime;
 	
 	public Points_record() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Points_record(Integer points_record_no, Integer member_no, Integer points_changed, Date transaction_time) {
+	public Points_record(Integer pointsRecordNo, Integer memberNo, Integer pointsChanged, Date transactionTime) {
 		super();
-		this.points_record_no = points_record_no;
-		this.member_no = member_no;
-		this.points_changed = points_changed;
-		this.transaction_time = transaction_time;
+		this.pointsRecordNo = pointsRecordNo;
+		this.memberNo = memberNo;
+		this.pointsChanged = pointsChanged;
+		this.transactionTime = transactionTime;
 	}
 
-	public Integer getPoints_record_no() {
-		return points_record_no;
+	public Integer getPointsRecordNo() {
+		return pointsRecordNo;
 	}
 
-	public void setPoints_record_no(Integer points_record_no) {
-		this.points_record_no = points_record_no;
+	public void setPointsRecordNo(Integer pointsRecordNo) {
+		this.pointsRecordNo = pointsRecordNo;
 	}
 
-	public Integer getMember_no() {
-		return member_no;
+	public Integer getMemberNo() {
+		return memberNo;
 	}
 
-	public void setMember_no(Integer member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(Integer memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public Integer getPoints_changed() {
-		return points_changed;
+	public Integer getPointsChanged() {
+		return pointsChanged;
 	}
 
-	public void setPoints_changed(Integer points_changed) {
-		this.points_changed = points_changed;
+	public void setPointsChanged(Integer pointsChanged) {
+		this.pointsChanged = pointsChanged;
 	}
 
-	public Date getTransaction_time() {
-		return transaction_time;
+	public Date getTransactionTime() {
+		return transactionTime;
 	}
 
-	public void setTransaction_time(Date transaction_time) {
-		this.transaction_time = transaction_time;
+	public void setTransactionTime(Date transactionTime) {
+		this.transactionTime = transactionTime;
 	}
 	
 	
-
 }

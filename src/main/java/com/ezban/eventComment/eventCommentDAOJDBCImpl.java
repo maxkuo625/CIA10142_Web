@@ -38,13 +38,13 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Insert_STMT);
 
-			pstmt.setInt(1, ecomment.getEvent_comment_no());
-			pstmt.setInt(2, ecomment.getEvent_no());
-			pstmt.setInt(3, ecomment.getMember_no());
-			pstmt.setString(4, ecomment.getEvent_comment_content());
-			pstmt.setInt(5, ecomment.getEvent_comment_rate());
-			pstmt.setDate(6, new java.sql.Date(ecomment.getEvent_comment_time().getTime()));
-			pstmt.setInt(7, ecomment.getEvent_comment_status());
+			pstmt.setInt(1, ecomment.getEventCommentNo());
+			pstmt.setInt(2, ecomment.getEventNo());
+			pstmt.setInt(3, ecomment.getMemberNo());
+			pstmt.setString(4, ecomment.getEventCommentContent());
+			pstmt.setInt(5, ecomment.getEventCommentRate());
+			pstmt.setDate(6, new java.sql.Date(ecomment.getEventCommentTime().getTime()));
+			pstmt.setByte(7, ecomment.getEventCommentStatus());
 
 			return pstmt.executeUpdate();
 
@@ -68,13 +68,13 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 			con = DriverManager.getConnection(JDBCUtil.URL, JDBCUtil.USER, JDBCUtil.PASSWORD);
 			pstmt = con.prepareStatement(Update_STMT);
 
-			pstmt.setInt(1, ecomment.getEvent_comment_no());
-			pstmt.setInt(2, ecomment.getEvent_no());
-			pstmt.setInt(3, ecomment.getMember_no());
-			pstmt.setString(4, ecomment.getEvent_comment_content());
-			pstmt.setInt(5, ecomment.getEvent_comment_rate());
-			pstmt.setDate(6, new java.sql.Date(ecomment.getEvent_comment_time().getTime()));
-			pstmt.setInt(7, ecomment.getEvent_comment_status());
+			pstmt.setInt(1, ecomment.getEventCommentNo());
+			pstmt.setInt(2, ecomment.getEventNo());
+			pstmt.setInt(3, ecomment.getMemberNo());
+			pstmt.setString(4, ecomment.getEventCommentContent());
+			pstmt.setInt(5, ecomment.getEventCommentRate());
+			pstmt.setDate(6, new java.sql.Date(ecomment.getEventCommentTime().getTime()));
+			pstmt.setByte(7, ecomment.getEventCommentStatus());
 
 			return pstmt.executeUpdate();
 
@@ -127,13 +127,13 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 
 			while (rs.next()) {
 				ecomment = new Event_comment();
-				ecomment.setEvent_comment_no(rs.getInt("event_comment_no"));
-				ecomment.setEvent_no(rs.getInt("event_no"));
-				ecomment.setMember_no(rs.getInt("member_no"));
-				ecomment.setEvent_comment_content(rs.getString("event_comment_content"));
-				ecomment.setEvent_comment_rate(rs.getInt("event_comment_rate"));
-				ecomment.setEvent_comment_time(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
-				ecomment.setEvent_comment_status(rs.getInt("event_comment_status"));
+				ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
+				ecomment.setEventNo(rs.getInt("event_no"));
+				ecomment.setMemberNo(rs.getInt("member_no"));
+				ecomment.setEventCommentContent(rs.getString("event_comment_content"));
+				ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
+				ecomment.setEventCommentTime(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
+				ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -160,13 +160,13 @@ public class eventCommentDAOJDBCImpl implements eventCommentDAO {
 
 			while (rs.next()) {
 				ecomment = new Event_comment();
-				ecomment.setEvent_comment_no(rs.getInt("event_comment_no"));
-				ecomment.setEvent_no(rs.getInt("event_no"));
-				ecomment.setMember_no(rs.getInt("member_no"));
-				ecomment.setEvent_comment_content(rs.getString("event_comment_content"));
-				ecomment.setEvent_comment_rate(rs.getInt("event_comment_rate"));
-				ecomment.setEvent_comment_time(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
-				ecomment.setEvent_comment_status(rs.getInt("event_comment_status"));
+				ecomment.setEventCommentNo(rs.getInt("event_comment_no"));
+				ecomment.setEventNo(rs.getInt("event_no"));
+				ecomment.setMemberNo(rs.getInt("member_no"));
+				ecomment.setEventCommentContent(rs.getString("event_comment_content"));
+				ecomment.setEventCommentRate(rs.getInt("event_comment_rate"));
+				ecomment.setEventCommentTime(new java.sql.Date(rs.getDate("event_comment_time").getTime()));
+				ecomment.setEventCommentStatus(rs.getByte("event_comment_status"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

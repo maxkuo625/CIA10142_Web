@@ -17,95 +17,93 @@ public class Event_comment {
 	
 	@Id
 	@Column(name = "event_comment_no")
-	private Integer event_comment_no;
+	private Integer eventCommentNo;
 	@Column(name = "event_no")
-	private Integer event_no;
+	private Integer eventNo;
 	@Column(name = "member_no")
-	private Integer member_no;
+	private Integer memberNo;
 	@Column(name = "event_comment_content")
-	private String event_comment_content;
+	private String eventCommentContent;
 	@Column(name = "event_comment_rate")
-	private Integer event_comment_rate;
+	private Integer eventCommentRate;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "event_comment_time")
-	private Date event_comment_time;
+	private Date eventCommentTime;
 	@Column(name = "event_comment_status")
-	private Integer event_comment_status;
+	private Byte eventCommentStatus;
 	
 	public Event_comment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event_comment(Integer event_comment_no, Integer event_no, Integer member_no, String event_comment_content,
-			Integer event_comment_rate, Date event_comment_time, Integer event_comment_status) {
+	public Event_comment(Integer eventCommentNo, Integer eventNo, Integer memberNo, String eventCommentContent,
+			Integer eventCommentRate, Date eventCommentTime, Byte eventCommentStatus) {
 		super();
-		this.event_comment_no = event_comment_no;
-		this.event_no = event_no;
-		this.member_no = member_no;
-		this.event_comment_content = event_comment_content;
-		this.event_comment_rate = event_comment_rate;
-		this.event_comment_time = event_comment_time;
-		this.event_comment_status = event_comment_status;
+		this.eventCommentNo = eventCommentNo;
+		this.eventNo = eventNo;
+		this.memberNo = memberNo;
+		this.eventCommentContent = eventCommentContent;
+		this.eventCommentRate = eventCommentRate;
+		this.eventCommentTime = eventCommentTime;
+		this.eventCommentStatus = eventCommentStatus;
 	}
 
-	public Integer getEvent_comment_no() {
-		return event_comment_no;
+	public Integer getEventCommentNo() {
+		return eventCommentNo;
 	}
 
-	public void setEvent_comment_no(Integer event_comment_no) {
-		this.event_comment_no = event_comment_no;
+	public void setEventCommentNo(Integer eventCommentNo) {
+		this.eventCommentNo = eventCommentNo;
 	}
 
-	public Integer getEvent_no() {
-		return event_no;
+	public Integer getEventNo() {
+		return eventNo;
 	}
 
-	public void setEvent_no(Integer event_no) {
-		this.event_no = event_no;
+	public void setEventNo(Integer eventNo) {
+		this.eventNo = eventNo;
 	}
 
-	public Integer getMember_no() {
-		return member_no;
+	public Integer getMemberNo() {
+		return memberNo;
 	}
 
-	public void setMember_no(Integer member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(Integer memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public String getEvent_comment_content() {
-		return event_comment_content;
+	public String getEventCommentContent() {
+		return eventCommentContent;
 	}
 
-	public void setEvent_comment_content(String event_comment_content) {
-		this.event_comment_content = event_comment_content;
+	public void setEventCommentContent(String eventCommentContent) {
+		this.eventCommentContent = eventCommentContent;
 	}
 
-	public Integer getEvent_comment_rate() {
-		return event_comment_rate;
+	public Integer getEventCommentRate() {
+		return eventCommentRate;
 	}
 
-	public void setEvent_comment_rate(Integer event_comment_rate) {
-		this.event_comment_rate = event_comment_rate;
+	public void setEventCommentRate(Integer eventCommentRate) {
+		this.eventCommentRate = eventCommentRate;
 	}
 
-	public Date getEvent_comment_time() {
-		return event_comment_time;
+	public Date getEventCommentTime() {
+		return eventCommentTime;
 	}
 
-	public void setEvent_comment_time(Date event_comment_time) {
-		this.event_comment_time = event_comment_time;
+	public void setEventCommentTime(Date eventCommentTime) {
+		this.eventCommentTime = eventCommentTime;
 	}
 
-	public Integer getEvent_comment_status() {
-		return event_comment_status;
+	public Byte getEventCommentStatus() {
+		return eventCommentStatus;
 	}
 
-	public void setEvent_comment_status(Integer event_comment_status) {
-		this.event_comment_status = event_comment_status;
+	public void setEventCommentStatus(Byte eventCommentStatus) {
+		this.eventCommentStatus = eventCommentStatus;
 	}
 	
 	
-	
-
 }
